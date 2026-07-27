@@ -1,20 +1,14 @@
 import HodgkinHuxleyModelCanonicalLaneLean.GateLemmas
 
-
 namespace HautevilleHouse
 namespace HodgkinHuxleyModelCanonicalLaneLean
 
-/-!
-Hodgkin-Huxley model
+def ConstrainedTheoremClosure (A : AdmissibleClass) : Prop :=
+  bridgeClosed A ∧ gateClosed A
 
-Constrained admissible-class closure of the theorem.
-Full formalization of the proof is future work.
--/
-def constrained_theorem_closure : Prop :=
-  C dV/dt = I - g_{Na}m³h(V - E_{Na}) - g_Kn⁴(V - E_K) - g_L(V - E_L)
-
-theorem constrained_theorem_closure_true : constrained_theorem_closure := by
-  sorry
+theorem constrained_theorem_closure (A : AdmissibleClass) :
+    ConstrainedTheoremClosure A := by
+  exact And.intro (bridge_from_admissible_class A) (gate_from_admissible_class A)
 
 end HodgkinHuxleyModelCanonicalLaneLean
 end HautevilleHouse
